@@ -1,0 +1,83 @@
+---
+import Card from '~/components/ui/Card.tsx';
+import CollectionSection from '~/features/collection/CollectionSection.astro';
+import ArtworkCarouselSection from '~/features/artwork/ArtworkCarouselSection.astro';
+import { ArtworkImageCarousel } from '~/features/artwork/ArtworkImageCarousel.tsx';
+import { ArtworkImageSwitcher } from '~/features/artwork/ArtworkImageSwitcher.tsx';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+import { getArtworkById } from 'storefront:client';
+import { unwrap } from '~/lib/util.ts';
+import { ArtworkPrice } from '~/features/artwork/ArtworkPrice.tsx';
+
+applyDefaultCacheHeaders(Astro.response.headers);
+
+const id = unwrap(Astro.params.artwork, 'Product param not found');
+const artworkResponse = await getArtworkById({
+	path: { id },
+});
+
+if (artworkResponse.error) {
+	return Astro.redirect('/');
+}
+
+const artwork = artworkResponse.data;
+console.log('single artwork:', artwork)
+
+const artworkImageSrcs = [...artwork.images.map((it) => it)];
+const artworkImages = artworkImageSrcs.map((src) => src);
+const firstImage = artworkImages[0];
+if (!firstImage) throw new Error(`No images found for artwork ${id}`);
+---
+
+<PrimaryLayout title={`Giving Arts - for Appalachia | ${artwork.title}`}>
+	<main class="mx-auto mt-8 w-full max-w-[1200px] gap-8">
+		<div
+			class="mx-auto mb-16 mt-8 grid max-w-lg grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-[1fr_32rem] lg:gap-32"
+		>
+			<div>
+				{
+					artworkImages.length > 1 ? (
+						<>
+							<div class="-mx-4 -mt-8 md:m-0 lg:hidden">
+								<ArtworkImageCarousel client:idle {artworkImages} />
+							</div>
+							<div class="hidden lg:block">
+								<ArtworkImageSwitcher client:idle {artworkImages} />
+							</div>
+						</>
+					) : (
+						<Card class="aspect-square justify-center">
+							<img
+								src={firstImage}
+								alt={artwork.title}
+								class="object-cover"
+							/>
+						</Card>
+					)
+				}
+			</div>
+
+			<div class="mt-4">
+				<header class="mb-8 flex flex-col items-start gap-3">
+					<h1 class="text-pretty text-3xl font-bold md:text-4xl">
+						{artwork.title}
+					</h1>
+					{artwork.tagline && <p class="text-slate-700">{artwork.tagline}</p>}
+					<p class="text-xl text-slate-700 md:text-2xl">
+						<ArtworkPrice
+							class="gap-3 font-semibold"
+							price={artwork.price}
+						/>
+					</p>
+				</header>
+			</div>
+		</div>
+
+		<ArtworkCarouselSection
+			heading="You might also like"
+		/>
+
+		<CollectionSection />
+	</main>
+</PrimaryLayout>

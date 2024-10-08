@@ -1,0 +1,117 @@
+---
+import CollectionSection from '~/features/collection/CollectionSection.astro';
+import LandingHero from '~/components/LandingHero.astro';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+
+applyDefaultCacheHeaders(Astro.response.headers);
+---
+
+<PrimaryLayout title="Giving Arts - for Appalachia">
+	<LandingHero />
+	<main class="breakout mt-16 flex flex-col gap-y-16">
+		<div class="content">
+			<div class="prose m-auto">
+				<h1>Artists Unite to Support Appalachia</h1>
+				<ol>
+					<li>
+						<strong>Artists Offer Their Artworks</strong>
+						<ul>
+							<li>
+								Artists willing to participate post images of the paintings or artworks they wish to
+								give.
+							</li>
+							<li>They include the general value of each piece to guide potential donors.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Donors Choose and Pledge</strong>
+						<ul>
+							<li>Donors browse the available artworks in the gallery.</li>
+							<li>
+								Upon selecting a piece, they contact the artist directly to express their interest.
+							</li>
+							<li>
+								The donor agrees to give an amount, typically aligned with the artwork's value.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Direct Giving to the Cause</strong>
+						<ul>
+							<li>Donors make their financial gift directly to the cause(s) of their choice.</li>
+							<li>
+								This could be a single organization, multiple charities, local churches, or even
+								directly to individuals in immediate need.
+							</li>
+							<li>Donors may also choose to support other artists who need assistance.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Trust-Based Exchange</strong>
+						<ul>
+							<li>
+								The system operates on mutual trust; proof of donation is appreciated but not
+								mandatory.
+							</li>
+							<li>
+								Once the donation is made, the artist arranges the delivery of the artwork to the
+								donor.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>No Intermediaries or Administrative Fees</strong>
+						<ul>
+							<li>All transactions are between the donor and the recipient(s) of their choice.</li>
+							<li>
+								The campaign does not handle any funds, ensuring that 100% of the donations reach
+								those in need.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Use of Community Platforms</strong>
+						<ul>
+							<li>
+								Facebook: Artists can post their offerings on the "Made for Artists" Facebook page
+								using the hashtag #GivingArtsForAppalachia.
+							</li>
+							<li>
+								Website: A dedicated page on the MFA.studio website showcases participating artists
+								and their available artworks.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Open Participation</strong>
+						<ul>
+							<li>
+								The initiative is open to all artists, regardless of their platform size or
+								following.
+							</li>
+							<li>
+								It encourages a grassroots approach, where every contribution makes a difference.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Emphasis on Giving Over Donations</strong>
+						<ul>
+							<li>
+								The focus is on the act of giving, which allows for more flexibility and avoids
+								potential legal issues associated with formal donations.
+							</li>
+							<li>
+								Participants are encouraged to "do their own digging" to find causes that resonate
+								with them personally.
+							</li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</div>
+
+		<CollectionSection />
+	</main>
+</PrimaryLayout>
