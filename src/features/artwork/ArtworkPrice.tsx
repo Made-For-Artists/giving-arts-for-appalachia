@@ -1,13 +1,13 @@
 import { twMerge } from 'tailwind-merge';
+import type { Artwork } from '~/lib/client.types.ts';
 import { formatProductPrice } from '~/lib/currency.ts';
-import type { Product } from '../cart/cart.ts';
 
 type Props = {
-	price: Product['price'];
+	price: Artwork['price'];
 	class?: string;
 };
 
-export function ProductPrice(props: Props) {
+export function ArtworkPrice(props: Props) {
 	return (
 		<span class={twMerge('flex gap-2 font-medium', props.class)}>
 			{formatProductPrice(props.price)}

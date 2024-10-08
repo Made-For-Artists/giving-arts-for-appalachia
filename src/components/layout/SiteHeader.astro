@@ -1,7 +1,7 @@
 ---
-import { CartDrawer } from '~/features/cart/CartDrawer.tsx';
-import AstroLogo from './AstroLogo.astro';
 import type { HTMLAttributes } from 'astro/types';
+import { NavBar } from './NavBar.tsx';
+import GivingArtsLogo from './GivingArtsLogo.astro';
 
 export interface Props extends HTMLAttributes<'nav'> {}
 
@@ -10,17 +10,16 @@ const { class: className, ...props } = Astro.props;
 
 <nav
 	aria-label="Site navigation"
-	class:list={["min-h-20 !flex items-center flex-row md:justify-between py-2 bg-white", className]}
-	{...props}
->
+	class:list={['!flex min-h-20 flex-row items-center bg-white py-2 md:justify-between', className]}
+	{...props}>
 	<div class="flex-1">
 		<a class="-m-2 block w-fit p-2 transition hover:text-theme-base-600" href="/">
-			<AstroLogo class="relative" />
+			<GivingArtsLogo class="relative" />
 			<span class="sr-only">Home</span>
 		</a>
 	</div>
 	<div class="flex flex-1 justify-end gap-2">
-		<CartDrawer client:idle />
+		<NavBar />
 	</div>
 </nav>
 

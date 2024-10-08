@@ -1,12 +1,12 @@
 ---
 import { unwrap } from '~/lib/util.ts';
 import CheckboxLink from '~/components/ui/CheckboxLink.astro';
-import ProductCard from '~/features/product/ProductCard.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
-import { getCollectionById, getProducts } from 'storefront:client';
+import { getCollectionById, getArtworks } from 'storefront:client';
 import SideColumnLayout from '~/layouts/SideColumnLayout.astro';
 import { z } from 'zod';
+import ArtworkCard from '~/features/artwork/ArtworkCard.astro';
 
 const searchParams = Object.fromEntries(Astro.url.searchParams);
 
@@ -24,7 +24,7 @@ if (collectionResponse.error) {
 	return Astro.redirect('/');
 }
 
-const productsResponse = await getProducts({
+const productsResponse = await getArtworks({
 	query: { collectionId, sort, order },
 });
 
@@ -33,10 +33,10 @@ if (!productsResponse.data) {
 }
 
 const collection = collectionResponse.data;
-const products = productsResponse.data.items.filter((product) => product.stock > 0);
+const products = productsResponse.data.items;
 ---
 
-<PrimaryLayout title={`Astro Shop | ${collection.name}`}>
+<PrimaryLayout title={`Giving Arts - for Appalachia | ${collection.name}`}>
 	<div class="pt-4">
 		<SideColumnLayout class="flex flex-wrap gap-4">
 			<div slot="aside" class="flex flex-col gap-4 py-4">
@@ -45,7 +45,7 @@ const products = productsResponse.data.items.filter((product) => product.stock >
 						{collection.name}
 					</h2>
 					<p class="text-sm font-medium text-slate-600">
-						{products.length} products
+						{products.length} artworks
 					</p>
 				</header>
 				<nav class="flex flex-col gap-2" aria-labelledby="sort-by-heading">
@@ -65,9 +65,8 @@ const products = productsResponse.data.items.filter((product) => product.stock >
 				slot="main"
 				class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4"
 				aria-labelledby="products-heading"
-				aria-label="Products"
-			>
-				{products.map((product) => <ProductCard {...product} />)}
+				aria-label="Products">
+				{products.map((product) => <ArtworkCard {...product} />)}
 			</section>
 		</SideColumnLayout>
 	</div>

@@ -12,7 +12,7 @@ const collectionsResponse = await getCollections();
 const collections = collectionsResponse.data?.items ?? [];
 
 const HEADING_ID = 'collection-section-heading';
-const { heading = 'Shop by category' } = Astro.props;
+const { heading = 'Browse by medium' } = Astro.props;
 ---
 
 <PageSection aria-labelledby={HEADING_ID}>

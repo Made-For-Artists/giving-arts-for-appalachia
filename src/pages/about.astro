@@ -1,7 +1,6 @@
 ---
 import CollectionSection from '~/features/collection/CollectionSection.astro';
 import LandingHero from '~/components/LandingHero.astro';
-import ArtworkCarouselSection from '~/features/artwork/ArtworkCarouselSection.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 
@@ -24,7 +23,6 @@ applyDefaultCacheHeaders(Astro.response.headers);
 					hope.
 				</p>
 			</div>
-			<ArtworkCarouselSection heading="Recently added" />
 		</div>
 
 		<CollectionSection />
