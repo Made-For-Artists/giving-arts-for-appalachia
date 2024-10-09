@@ -2,7 +2,7 @@ import type { Analytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import type { FirebaseApp } from "firebase/app";
 import type { Auth, Unsubscribe } from "firebase/auth";
-import type { Firestore } from "firebase/firestore";
+import type { Firestore, } from "firebase/firestore";
 import type { FirebasePerformance } from "firebase/performance";
 import type { FirebaseStorage } from "firebase/storage";
 
@@ -117,6 +117,18 @@ export async function batchUploadArtwork(images: File[], artworkTitle: string) {
     });
 
     return Promise.all(uploadPromisesArr);
+}
+
+export async function attachFirestoreCollectionListener(key: string, cb: any, category?: string) {
+    let curFirestore = await getFirestore();
+    const { collection, onSnapshot, query, where } = await import("firebase/firestore");
+
+    let q
+    if (!category) q = query(collection(curFirestore, key));
+    else q = query(collection(curFirestore, key), where("category", "==", category))
+
+    firestoreListeners[key] = onSnapshot(q, cb);
+    return firestoreListeners[key];
 }
 
 export const attachDocListener = async (path: string, cb: any) => {

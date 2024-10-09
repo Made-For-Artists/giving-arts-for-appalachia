@@ -1,20 +1,23 @@
 import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
-import { getFirestore } from 'firebase-admin/firestore';
+import { Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { app } from '../firebase/server';
 
 export const artwork = {
     submitArtwork: defineAction({
         accept: 'form',
         input: z.object({
-            name: z.string(),
+            title: z.string(),
+            slug: z.string(),
+            artist: z.string(),
             email: z.string().email(),
             phone: z.string(),
-            title: z.string(),
             medium: z.string(),
             dimensions: z.string(),
-            description: z.string(),
+            category: z.string(),
+            tagline: z.string(),
             price: z.string(),
+            imageUrl: z.string(),
             images: z.array(z.string())
         }),
         handler: async (submission) => {
@@ -23,7 +26,12 @@ export const artwork = {
                 if (app) {
                     const db = getFirestore();
                     const ref = db.collection('artworks');
-                    const docRef = await ref.add(submission)
+
+                    const docRef = await ref.add({
+                        ...submission,
+                        createdAt: Timestamp.now()
+                    })
+                    console.log('saved doc:', docRef.id)
                     return { documentId: docRef.id };
                 }
             } catch (err) {

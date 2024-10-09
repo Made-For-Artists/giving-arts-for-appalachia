@@ -1,12 +1,14 @@
 ---
-import CollectionSection from '~/features/collection/CollectionSection.astro';
-import { applyDefaultCacheHeaders } from '~/config.ts';
-import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
-import { Textfield } from '~/components/ui/Textfield/Textfield.tsx';
-import { PriceTextfield } from '~/components/ui/PriceTextfield/PriceTextfield.tsx';
+// import { button } from '~/styles.ts';
 import { ImageUploader } from '~/components/ImageUploader/ImageUploader.tsx';
-import { button } from '~/styles.ts';
 import TitleHeader from '~/components/TitleHeader.astro';
+import { Button } from '~/components/ui/Button.tsx';
+import { Dropdown } from '~/components/ui/Dropdown/Dropdown.tsx';
+import { PriceTextfield } from '~/components/ui/PriceTextfield/PriceTextfield.tsx';
+import { Textfield } from '~/components/ui/Textfield/Textfield.tsx';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import CollectionSection from '~/features/collection/CollectionSection.astro';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 
 applyDefaultCacheHeaders(Astro.response.headers);
 ---
@@ -25,7 +27,7 @@ applyDefaultCacheHeaders(Astro.response.headers);
 
 				<form class="flex flex-col gap-6" enctype="multipart/form-data">
 					<h3 class="mb-0">Contact information</h3>
-					<Textfield required name="name" label="Name" />
+					<Textfield required name="artist" label="Artist name" />
 					<Textfield required name="email" label="Email" type="email" />
 					<Textfield required name="phone" label="Phone number" type="tel" />
 
@@ -34,12 +36,17 @@ applyDefaultCacheHeaders(Astro.response.headers);
 					<Textfield required name="title" label="Artwork title" />
 					<PriceTextfield required name="price" client:only="solid-js" label="Suggested donation" />
 					<Textfield required name="medium" label="Medium" />
+					<Dropdown
+						client:only="solid-js"
+						options={['Painting', 'Sculpture']}
+						required
+						name="category"
+						label="Category"
+					/>
 					<Textfield required name="dimensions" label="Dimensions" />
-					<Textfield required textarea name="description" label="Description" />
+					<Textfield required textarea name="tagline" label="Description" />
 
-					<button type="submit" class={button({ theme: 'dark', className: 'font-bold' })}>
-						Submit art
-					</button>
+					<Button type="submit">Submit art</Button>
 				</form>
 			</div>
 		</div>
@@ -50,13 +57,13 @@ applyDefaultCacheHeaders(Astro.response.headers);
 
 <script>
 	import { actions } from 'astro:actions';
+	import { navigate } from 'astro:transitions/client';
 	import { batchUploadArtwork } from '~/firebase/client.ts';
 
 	const form = document.querySelector('form');
 	form?.addEventListener('submit', async (event) => {
 		event.preventDefault();
 		const formData = new FormData(form);
-		console.log('form data to submit:', formData);
 
 		// Upload images to get href
 		const title = formData.get('title') as string;
@@ -64,7 +71,10 @@ applyDefaultCacheHeaders(Astro.response.headers);
 		const imagesToUpload = formData.getAll('images') as File[];
 		const imageHrefArr = await batchUploadArtwork(imagesToUpload, sanitizedTitle);
 		formData.set('images', imageHrefArr);
+		formData.set('imageUrl', imageHrefArr[0]);
+		formData.set('slug', title);
 
-		const result = await actions.artwork.submitArtwork(formData);
+		const { data, error } = await actions.artwork.submitArtwork(formData);
+		if (!error) navigate(`/artworks/${data.documentId}`);
 	});
 </script>

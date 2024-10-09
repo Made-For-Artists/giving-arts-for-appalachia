@@ -1,17 +1,16 @@
 ---
-import { unwrap } from '~/lib/util.ts';
+import { getCollectionById } from 'storefront:client';
+import ArtworkCollection from '~/components/ArtworkCollection/ArtworkCollection.tsx';
 import CheckboxLink from '~/components/ui/CheckboxLink.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
-import { getCollectionById, getArtworks } from 'storefront:client';
 import SideColumnLayout from '~/layouts/SideColumnLayout.astro';
-import { z } from 'zod';
-import ArtworkCard from '~/features/artwork/ArtworkCard.astro';
+import { unwrap } from '~/lib/util.ts';
 
-const searchParams = Object.fromEntries(Astro.url.searchParams);
+// const searchParams = Object.fromEntries(Astro.url.searchParams);
 
-const sort = z.enum(['price']).optional().parse(searchParams.sort);
-const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
+// const sort = z.enum(['price']).optional().parse(searchParams.sort);
+// const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
 
 applyDefaultCacheHeaders(Astro.response.headers);
 
@@ -24,16 +23,8 @@ if (collectionResponse.error) {
 	return Astro.redirect('/');
 }
 
-const productsResponse = await getArtworks({
-	query: { collectionId, sort, order },
-});
-
-if (!productsResponse.data) {
-	return new Response(undefined, { status: 404 });
-}
-
+console.log('collection:', collectionResponse.data.slug);
 const collection = collectionResponse.data;
-const products = productsResponse.data.items;
 ---
 
 <PrimaryLayout title={`Giving Arts - for Appalachia | ${collection.name}`}>
@@ -53,7 +44,7 @@ const products = productsResponse.data.items;
 						{collection.name}
 					</h2>
 					<p class="text-sm font-medium text-slate-600">
-						{products.length} artworks
+						<!-- {products.length} artworks -->
 					</p>
 				</header>
 				<nav class="flex flex-col gap-2" aria-labelledby="sort-by-heading">
@@ -74,7 +65,7 @@ const products = productsResponse.data.items;
 				class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4"
 				aria-labelledby="products-heading"
 				aria-label="Products">
-				{products.map((product) => <ArtworkCard {...product} />)}
+				<ArtworkCollection collection={collection.id} client:only="solid-js" />
 			</section>
 		</SideColumnLayout>
 	</div>
