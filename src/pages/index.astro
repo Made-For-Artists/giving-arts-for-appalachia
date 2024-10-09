@@ -1,8 +1,9 @@
 ---
-import CollectionSection from '~/features/collection/CollectionSection.astro';
+import ArtworkCollection from '~/components/ArtworkCollection/ArtworkCollection.tsx';
 import LandingHero from '~/components/LandingHero.astro';
-import ArtworkCarouselSection from '~/features/artwork/ArtworkCarouselSection.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
+// import ArtworkCarouselSection from '~/features/artwork/ArtworkCarouselSection.astro';
+import CollectionSection from '~/features/collection/CollectionSection.astro';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 
 applyDefaultCacheHeaders(Astro.response.headers);
@@ -24,7 +25,13 @@ applyDefaultCacheHeaders(Astro.response.headers);
 					hope.
 				</p>
 			</div>
-			<ArtworkCarouselSection heading="Recently added" />
+			<section
+				slot="main"
+				class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4"
+				aria-labelledby="products-heading"
+				aria-label="Products">
+				<ArtworkCollection collection="all" client:only="solid-js" />
+			</section>
 		</div>
 
 		<CollectionSection />

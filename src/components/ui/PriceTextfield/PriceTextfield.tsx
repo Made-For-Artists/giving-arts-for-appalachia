@@ -11,12 +11,18 @@ export function PriceTextfield(props: Props) {
 		<NumberField
 			formatOptions={{ style: "currency", currency: "USD" }}
 			class="number-field"
+            changeOnWheel={false}
+            minValue={0}
 		>
 			<NumberField.Label class="number-field__label">
 				{props.label}
 			</NumberField.Label>
 			<div class="number-field__group">
-				<NumberField.Input class="number-field__input" />
+				<NumberField.Input
+					required={props.required}
+					name={props.name}
+					class="number-field__input"
+				/>
 			</div>
 		</NumberField>
 	);

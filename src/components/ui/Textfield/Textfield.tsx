@@ -12,7 +12,12 @@ interface Props extends ComponentProps<"input"> {
 
 export function Textfield(props: Props) {
 	return (
-		<TextField validationState={props.validationState} class="text-field">
+		<TextField
+			required={props.required}
+			name={props.name}
+			validationState={props.validationState}
+			class="text-field"
+		>
 			<TextField.Label class="text-field__label">{props.label}</TextField.Label>
 			{props.textarea ? (
 				<TextField.TextArea class="text-field__input" />

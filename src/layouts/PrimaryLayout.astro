@@ -5,7 +5,6 @@ import SiteFooter from '~/components/layout/SiteFooter.astro';
 import SiteHeader from '~/components/layout/SiteHeader.astro';
 import SiteRibbon from '~/components/layout/SiteRibbon.astro';
 import { SolidQueryDevtools } from '~/components/SolidQueryDevtools.tsx';
-import { FATHOM_SITE_ID } from 'astro:env/client';
 import '../styles.css';
 
 const defaults = {
@@ -29,20 +28,9 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="mask-icon" href="/favicon.svg" color="#8D46E7" />
+		<link rel="mask-icon" href="/favicon.svg" color="#000000" />
 
 		<SEO {...defaults} {title} />
-
-		{
-			FATHOM_SITE_ID && (
-				<script
-					src="https://cdn.usefathom.com/script.js"
-					data-site={FATHOM_SITE_ID}
-					is:inline
-					defer
-				/>
-			)
-		}
 	</head>
 	<body class="content-grid min-h-screen">
 		<SiteRibbon />

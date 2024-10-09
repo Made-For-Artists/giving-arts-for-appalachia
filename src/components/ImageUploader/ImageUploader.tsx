@@ -14,8 +14,10 @@ export function ImageUploader(props: Props) {
 			<div class="prose prose-sm flex flex-col font-medium gap-1">
 				<label for={props.name}>{props.label}</label>
 				<input
+					required={props.required}
 					name={props.name}
 					type="file"
+					accept="image/*"
 					multiple
 					use:fileUploader={{
 						userCallback: (fs) => fs.forEach((f) => console.log(f)),

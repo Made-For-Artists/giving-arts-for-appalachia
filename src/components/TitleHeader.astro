@@ -1,0 +1,27 @@
+---
+import twoXl from '~/assets/background.jpg';
+
+export interface Props {
+	title: string;
+}
+---
+
+<header
+	class="breakout focus-ring-light relative h-36 max-h-dvh justify-items-start bg-black py-8 text-white md:h-36 md:bg-bottom">
+	<picture>
+		<source srcset={twoXl.src} media="(max-width: 640px)" />
+		<source srcset={twoXl.src} media="(max-width: 768px)" />
+		<source srcset={twoXl.src} media="(max-width: 1024px)" />
+		<source srcset={twoXl.src} media="(max-width: 1280px)" />
+		<source srcset={twoXl.src} media="(min-width: 1281px)" />
+		<img
+			src={twoXl.src}
+			alt=""
+			class="breakout absolute inset-0 size-full object-cover object-center"
+		/>
+	</picture>
+
+	<div class="prose prose-invert relative">
+		<h1>{Astro.props.title}</h1>
+	</div>
+</header>

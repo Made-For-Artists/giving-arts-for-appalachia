@@ -1,44 +1,52 @@
 ---
-import CollectionSection from '~/features/collection/CollectionSection.astro';
-import LandingHero from '~/components/LandingHero.astro';
-import { applyDefaultCacheHeaders } from '~/config.ts';
-import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
-import { Textfield } from '~/components/ui/Textfield/Textfield.tsx';
-import { PriceTextfield } from '~/components/ui/PriceTextfield/PriceTextfield.tsx';
+// import { button } from '~/styles.ts';
 import { ImageUploader } from '~/components/ImageUploader/ImageUploader.tsx';
-import { button } from '~/styles.ts';
+import TitleHeader from '~/components/TitleHeader.astro';
+import { Button } from '~/components/ui/Button.tsx';
+import { Dropdown } from '~/components/ui/Dropdown/Dropdown.tsx';
+import { PriceTextfield } from '~/components/ui/PriceTextfield/PriceTextfield.tsx';
+import { Textfield } from '~/components/ui/Textfield/Textfield.tsx';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import CollectionSection from '~/features/collection/CollectionSection.astro';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 
 applyDefaultCacheHeaders(Astro.response.headers);
 ---
 
 <PrimaryLayout title="Giving Arts - for Appalachia">
-	<LandingHero hideCTA />
+	<TitleHeader title="Art submission form" />
 	<main class="breakout mt-16 flex flex-col gap-y-16">
 		<div class="content">
 			<div class="prose m-auto">
-				<h1>Art submission form</h1>
 				<p class="prose-base m-auto mb-10 md:prose-lg lg:prose-xl">
-					Here you can provide details and images of the artwork you wish to offer. Indicate the
-					suggested donation amount based on the artwork's value.
+					Thank you for your interest in contributing your artwork to support the communities
+					affected in Appalachia. By offering your art, you become a vital part of a compassionate
+					initiative rooted in giving and trust. Please complete the form below to submit your
+					artwork for inclusion in our gallery.
 				</p>
 
-				<form class="flex flex-col gap-6" action="">
-					<h4 class="mb-0">Contact information</h4>
-					<Textfield name="name" label="Name" />
-					<Textfield name="email" label="Email" type="email" />
-					<Textfield name="phone" label="Phone number" type="tel" />
+				<form class="flex flex-col gap-6" enctype="multipart/form-data">
+					<h3 class="mb-0">Contact information</h3>
+					<Textfield required name="artist" label="Artist name" />
+					<Textfield required name="email" label="Email" type="email" />
+					<Textfield required name="phone" label="Phone number" type="tel" />
 
-					<h4 class="mb-0">Artwork details</h4>
-					<ImageUploader client:only label="Artwork images" name="images" />
-					<Textfield name="title" label="Artwork title" />
-					<PriceTextfield client:only label="Suggested donation" />
-					<Textfield name="medium" label="Medium" />
-					<Textfield name="dimensions" label="Dimensions" />
-					<Textfield textarea name="description" label="Description" />
+					<h3 class="mb-0">Artwork details</h3>
+					<ImageUploader required client:only="solid-js" label="Artwork images" name="images" />
+					<Textfield required name="title" label="Artwork title" />
+					<PriceTextfield required name="price" client:only="solid-js" label="Suggested donation" />
+					<Textfield required name="medium" label="Medium" />
+					<Dropdown
+						client:only="solid-js"
+						options={['Painting', 'Sculpture']}
+						required
+						name="category"
+						label="Category"
+					/>
+					<Textfield required name="dimensions" label="Dimensions" />
+					<Textfield required textarea name="tagline" label="Description" />
 
-					<button type="submit" class={button({ theme: 'dark', className: 'font-bold' })}>
-						Submit art
-					</button>
+					<Button type="submit">Submit art</Button>
 				</form>
 			</div>
 		</div>
@@ -48,20 +56,25 @@ applyDefaultCacheHeaders(Astro.response.headers);
 </PrimaryLayout>
 
 <script>
-	import { actions, isInputError } from 'astro:actions';
+	import { actions } from 'astro:actions';
 	import { navigate } from 'astro:transitions/client';
+	import { batchUploadArtwork } from '~/firebase/client.ts';
 
 	const form = document.querySelector('form');
 	form?.addEventListener('submit', async (event) => {
 		event.preventDefault();
 		const formData = new FormData(form);
-		const { error } = await actions.artwork.submitArtwork(formData);
-		if (isInputError(error)) {
-			// Handle input errors.
-			if (error.fields.email) {
-				const message = error.fields.email.join(', ');
-			}
-		}
-		if (!error) navigate('/confirmation');
+
+		// Upload images to get href
+		const title = formData.get('title') as string;
+		const sanitizedTitle = title.replace(/\s+/g, '-').toLowerCase();
+		const imagesToUpload = formData.getAll('images') as File[];
+		const imageHrefArr = await batchUploadArtwork(imagesToUpload, sanitizedTitle);
+		formData.set('images', imageHrefArr);
+		formData.set('imageUrl', imageHrefArr[0]);
+		formData.set('slug', title);
+
+		const { data, error } = await actions.artwork.submitArtwork(formData);
+		if (!error) navigate(`/artworks/${data.documentId}`);
 	});
 </script>

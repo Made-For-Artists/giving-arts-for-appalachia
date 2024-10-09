@@ -1,7 +1,7 @@
 ---
-import CollectionCard from './CollectionCard.astro';
-import { PageHeading, PageSection } from '~/components/ui/PageSection.tsx';
 import { getCollections } from 'storefront:client';
+import { PageHeading, PageSection } from '~/components/ui/PageSection.tsx';
+import CollectionCard from './CollectionCard.astro';
 
 export interface Props {
 	heading?: string;
@@ -12,7 +12,7 @@ const collectionsResponse = await getCollections();
 const collections = collectionsResponse.data?.items ?? [];
 
 const HEADING_ID = 'collection-section-heading';
-const { heading = 'Browse by medium' } = Astro.props;
+const { heading = 'Browse by category' } = Astro.props;
 ---
 
 <PageSection aria-labelledby={HEADING_ID}>

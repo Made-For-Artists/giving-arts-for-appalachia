@@ -1,8 +1,6 @@
 ---
 import CollectionSection from '~/features/collection/CollectionSection.astro';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
-
-export const prerender = true;
 ---
 
 <PrimaryLayout title="Giving Arts - for Appalachia">
@@ -12,10 +10,11 @@ export const prerender = true;
 			<p>
 				Looks like that page no longer exists. Let's get you <a
 					class="font-semibold underline"
-					href="/">back to the gallery.</a
-				>
+					href="/">
+					back to the gallery.
+				</a>
 			</p>
 		</div>
-		<CollectionSection heading="Browse by medium" />
+		<CollectionSection heading="Browse by category" />
 	</main>
 </PrimaryLayout>

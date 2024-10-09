@@ -1,7 +1,7 @@
 ---
-import { getArtworks, type Artwork } from 'storefront:client';
-import ArtworkCarousel, { MEASURED_ITEM_ID, GAP } from './ArtworkCarousel.tsx';
 import ArtworkCard from './ArtworkCard.astro';
+// import { getArtworks, type Artwork } from 'storefront:client';
+import ArtworkCarousel, { MEASURED_ITEM_ID, GAP } from './ArtworkCarousel.tsx';
 
 type Props = {
 	heading: string;
@@ -10,11 +10,12 @@ type Props = {
 
 const { heading, filterProducts = (artworks) => artworks } = Astro.props;
 
-const artworksResponse = await getArtworks({query: {
-    limit: 10,
-    recentlyAdded: true
-}});
-const artworks = filterProducts(artworksResponse.data?.items ?? []);
+// const artworksResponse = await getArtworks({query: {
+//     limit: 10,
+//     recentlyAdded: true
+// }});
+const artworksResponse = {};
+const artworks = filterProducts(artworksResponse?.data?.items ?? []);
 ---
 
 <ArtworkCarousel {heading} client:idle>

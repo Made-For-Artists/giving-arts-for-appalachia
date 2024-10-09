@@ -1,20 +1,23 @@
+import type { Timestamp } from "firebase/firestore";
+
 export type Artwork = {
     id: string;
     title: string;
     slug: string;
     artist: string;
-    date: string;
+    email: string;
+    phone: string;
     medium: string;
     dimensions: string;
     category: string;
     tagline: string | null;
-    /** The price of the product in cents. */
-    price: number;
+    /** The price of the product formatted in dollars. */
+    price: string;
     imageUrl: string;
     images: Array<string>;
-    createdAt: number;
-    updatedAt: number;
-    deletedAt: number | null;
+    createdAt: Timestamp;
+    updatedAt?: number | null;
+    deletedAt?: number | null;
     collectionIds?: Array<string>;
 };
 
