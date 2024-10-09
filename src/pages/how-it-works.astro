@@ -1,18 +1,17 @@
 ---
 import CollectionSection from '~/features/collection/CollectionSection.astro';
-import LandingHero from '~/components/LandingHero.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+import TitleHeader from '~/components/TitleHeader.astro';
 
 applyDefaultCacheHeaders(Astro.response.headers);
 ---
 
 <PrimaryLayout title="Giving Arts - for Appalachia">
-	<LandingHero />
+	<TitleHeader title="How it works" />
 	<main class="breakout mt-16 flex flex-col gap-y-16">
 		<div class="content">
 			<div class="prose m-auto">
-				<h1>Artists Unite to Support Appalachia</h1>
 				<ol>
 					<li>
 						<strong>Artists Offer Their Artworks</strong>

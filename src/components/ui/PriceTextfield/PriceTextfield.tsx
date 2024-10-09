@@ -16,7 +16,11 @@ export function PriceTextfield(props: Props) {
 				{props.label}
 			</NumberField.Label>
 			<div class="number-field__group">
-				<NumberField.Input class="number-field__input" />
+				<NumberField.Input
+					required={props.required}
+					name={props.name}
+					class="number-field__input"
+				/>
 			</div>
 		</NumberField>
 	);
