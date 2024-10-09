@@ -1,7 +1,5 @@
-import { artwork } from './artwork.ts';
-import { cart } from './cart.ts';
+import { artwork } from './artwork.ts'
 
 export const server = {
-    cart,
     artwork
 };
