@@ -3,12 +3,17 @@ import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
+import vercel from '@astrojs/vercel/serverless';
+
 // https://astro.build/config
 export default defineConfig({
     integrations: [tailwind({ applyBaseStyles: false }), icon(), solidJs()],
+
     // Update to your storefront URL
-    site: 'https://shop.astro.build',
+    site: 'https://givingarts.mfa.studio',
+
     output: 'server',
+
     vite: {
         build: {
             assetsInlineLimit(filePath) {
@@ -16,6 +21,7 @@ export default defineConfig({
             },
         },
     },
+
     image: {
         // Update to your own image domains
         domains: [
@@ -23,4 +29,6 @@ export default defineConfig({
             'givingarts.mfa.studio',
         ],
     },
+
+    adapter: vercel(),
 });
