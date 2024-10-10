@@ -47,10 +47,15 @@ export default function ArtworkDetails({ id }) {
                         <h1 class="text-pretty text-3xl font-bold md:text-4xl">
                             {artwork()?.title}
                         </h1>
+                        <div>
+                            {artwork()?.artist && <p class="text-slate-700">{artwork()?.artist}</p>}
+                            {artwork()?.email && <p class="text-slate-700">{artwork()?.email}</p>}
+                        </div>
                         {artwork()?.tagline && <p class="text-slate-700">{artwork()?.tagline}</p>}
                         <p class="text-xl text-slate-700 md:text-2xl">
                             <ArtworkPrice class="gap-3 font-semibold" price={artwork()?.price} />
                         </p>
+
                     </header>
                 </div>
             </div>

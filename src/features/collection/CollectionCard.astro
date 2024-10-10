@@ -1,25 +1,28 @@
 ---
 import { Image } from 'astro:assets';
-import { button } from '~/styles.ts';
 import Card from '~/components/ui/Card.tsx';
+import { button } from '~/styles.ts';
 
 export interface Props {
 	name: string;
 	slug: string;
-	imageUrl?: string;
+	imageUrl: string;
 	cta?: string;
 }
 ---
 
 <Card>
 	<a href={`/collections/${Astro.props.slug}`} class="w-full">
-		<article class="flex flex-col items-start gap-3 p-6">
-			<p class="text-pretty text-3xl font-semibold">
-				{Astro.props.name}
-			</p>
-			<p class={button()}>
-				{Astro.props.cta ?? 'View now'}
-			</p>
+		<article class="relative flex flex-col items-start gap-3">
+			<img class="absolute h-full object-cover" src={Astro.props.imageUrl} alt={Astro.props.name} />
+			<div class="z-10 p-6 text-theme-base-50">
+				<p class="mb-4 text-pretty text-3xl font-semibold">
+					{Astro.props.name}
+				</p>
+				<p class={button()}>
+					{Astro.props.cta ?? 'View now'}
+				</p>
+			</div>
 		</article>
 	</a>
 </Card>

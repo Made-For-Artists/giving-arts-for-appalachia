@@ -110,7 +110,6 @@ const collectionDefaults = {
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     deletedAt: null,
-    imageUrl: '/assets/astro-houston-sticker.png',
     description: ''
 };
 const collections: Record<string, Collection> = {
@@ -118,18 +117,21 @@ const collections: Record<string, Collection> = {
         id: 'all',
         name: 'View all',
         slug: 'all',
+        imageUrl: '/assets/paintings-category.jpeg',
         ...collectionDefaults
     },
     paintings: {
         id: 'paintings',
         name: 'Paintings',
         slug: 'paintings',
+        imageUrl: '/assets/paintings-category.jpeg',
         ...collectionDefaults
     },
     sculptures: {
         id: 'sculptures',
         name: 'Sculptures',
         slug: 'sculptures',
+        imageUrl: '/assets/sculptures-category.jpeg',
         ...collectionDefaults
     }
 }
