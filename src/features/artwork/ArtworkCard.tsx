@@ -15,11 +15,11 @@ export default function ArtworkCard(props : Props) {
     return (
         <a
             href={artworkPath(props.id)}
-            class={twMerge(`group relative block w-full focus-visible:ring-0`)}
+            class={twMerge(`group relative block focus-visible:ring-0`)}
             id={props.elementId ?? undefined}
             aria-label={`${props.title} for ${props.price}`}>
-            <article>
-                <Card class="flex aspect-[5/6] items-center justify-center">
+            <article class="flex flex-col h-full">
+                <Card class="flex aspect-[5/6] items-center justify-center h-80">
                     <img
                         src={props.imageUrl}
                         alt={props.title}
@@ -27,12 +27,16 @@ export default function ArtworkCard(props : Props) {
                         height={290}
                         loading={props.imageLoading ?? 'lazy'}
                         draggable="false"
+                        class="object-contain h-full w-full"
                     />
                 </Card>
-                <div class="flex flex-col gap-2 p-2 font-medium">
-                    <h3 class="text-pretty leading-tight text-theme-base-900">{props.title}</h3>
-                    <p class="text-lg/tight text-theme-base-600">
-                        <ArtworkPrice price={props.purchased ? 'GIFTED' : props.formattedPrice} />
+                <div class="flex flex-col flex-1 p-2 font-medium prose">
+                    <h3 class="m-0 text-pretty text-theme-base-900 italic">{props.title}</h3>
+                    <p class="m-0 mt-auto leading-tight">{props.artist}</p>
+                    <p class="m-0 leading-tight capitalize">{props.medium}</p>
+                    <p class="m-0 leading-tight">{props.dimensions}</p>
+                    <p class="text-lg/tight text-theme-base-600 m-0 mt-3">
+                        <ArtworkPrice purchased={props.purchased} price={props.formattedPrice} />
                     </p>
                 </div>
             </article>
