@@ -46,7 +46,7 @@ const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
 						<!-- {products.length} artworks -->
 					</p>
 				</header>
-				<nav class="flex flex-col gap-2" aria-labelledby="sort-by-heading">
+				<!-- <nav class="flex flex-col gap-2" aria-labelledby="sort-by-heading">
 					<h3 id="sort-by-heading" class="font-semibold">Sort by</h3>
 					<ul class="contents">
 						<li>
@@ -56,7 +56,7 @@ const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
 							<CheckboxLink href={`?sort=price&order=desc`} label="Price: High to Low" />
 						</li>
 					</ul>
-				</nav>
+				</nav> -->
 			</div>
 
 			<section
