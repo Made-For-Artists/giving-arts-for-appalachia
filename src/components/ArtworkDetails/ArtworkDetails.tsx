@@ -50,10 +50,11 @@ export default function ArtworkDetails({ id }) {
                         <div>
                             {artwork()?.artist && <p class="text-slate-700">{artwork()?.artist}</p>}
                             {artwork()?.email && <p class="text-slate-700">{artwork()?.email}</p>}
+                            {artwork()?.phone && <p class="text-slate-700">{artwork()?.phone}</p>}
                         </div>
                         {artwork()?.tagline && <p class="text-slate-700">{artwork()?.tagline}</p>}
                         <p class="text-xl text-slate-700 md:text-2xl">
-                            <ArtworkPrice class="gap-3 font-semibold" price={artwork()?.purchased ? 'GIFTED' : artwork()?.formattedPrice} />
+                            <ArtworkPrice class="gap-3 font-semibold" purchased={artwork()?.purchased} price={artwork()?.formattedPrice} />
                         </p>
 
                     </header>
