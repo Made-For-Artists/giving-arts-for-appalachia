@@ -1,10 +1,14 @@
 import { NavigationMenu } from "@kobalte/core/navigation-menu";
 import "./NavBar.css";
 
-export function NavBar() {
+interface Props {
+	orientation: "horizontal" | "vertical";
+}
+
+export function NavBar(props : Props) {
 	return (
 		<>
-			<NavigationMenu class="navigation-menu__root" orientation="horizontal">
+			<NavigationMenu class="navigation-menu__root" orientation={props.orientation}>
 				<NavigationMenu.Trigger
 					class="navigation-menu__trigger"
 					as="a"

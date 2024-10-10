@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import { NavBar } from './NavBar.tsx';
+import { CartDrawer } from '~/features/cart/CartDrawer.tsx';
 import GivingArtsLogo from './GivingArtsLogo.astro';
+import { NavBar } from './NavBar.tsx';
 
 export interface Props extends HTMLAttributes<'nav'> {}
 
@@ -18,8 +19,11 @@ const { class: className, ...props } = Astro.props;
 			<span class="sr-only">Home</span>
 		</a>
 	</div>
-	<div class="flex flex-1 justify-end gap-2">
-		<NavBar />
+	<div class="hidden flex-1 justify-end gap-2 sm:flex">
+		<NavBar orientation="horizontal" />
+	</div>
+	<div class="flex flex-1 justify-end gap-2 sm:hidden">
+		<CartDrawer client:only="solid-js" />
 	</div>
 </nav>
 

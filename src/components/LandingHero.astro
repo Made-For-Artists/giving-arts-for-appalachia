@@ -1,9 +1,9 @@
 ---
-import sm from '~/assets/hero-banner-sm.jpg';
-import md from '~/assets/hero-banner-md.jpg';
-import lg from '~/assets/hero-banner-lg.jpg';
-import xl from '~/assets/hero-banner-xl.jpg';
 import twoXl from '~/assets/hero-banner-2xl.jpg';
+import lg from '~/assets/hero-banner-lg.jpg';
+import md from '~/assets/hero-banner-md.jpg';
+import sm from '~/assets/hero-banner-sm.jpg';
+import xl from '~/assets/hero-banner-xl.jpg';
 import { button } from '~/styles.ts';
 
 export interface Props {
@@ -27,7 +27,7 @@ export interface Props {
 	</picture>
 	{
 		!Astro.props.hideCTA && (
-			<div class="relative m-auto flex flex-col gap-4 sm:flex-row">
+			<div class="relative m-auto flex flex-col items-center gap-4 sm:flex-row">
 				<a href="/collections/all">
 					<button class={button({ theme: 'dark', className: 'font-bold md:h-12 md:text-lg' })}>
 						Browse artworks
