@@ -1,19 +1,28 @@
 import { RiArrowsArrowLeftLine, RiArrowsArrowRightLine } from 'solid-icons/ri';
-import { type ParentProps, createSignal } from 'solid-js';
+import { createSignal, } from 'solid-js';
 import { SquareIconButton } from '~/components/ui/Button.tsx';
 import { PageHeading, PageSection } from '~/components/ui/PageSection.tsx';
+import { fetchRecentlyAddedArtworks } from '~/firebase/client.ts';
+import type { Artwork } from '~/lib/client.types.ts';
+import ArtworkCard from './ArtworkCard.tsx';
 
 export const MEASURED_ITEM_ID = 'measured-li';
 export const GAP = 16; // gap-4
 const HEADING_ID = 'artwork-carousel-heading';
 
-export default function ArtworkCarousel(
-	props: ParentProps<{
-		heading: string;
-	}>,
-) {
+interface Props {
+	heading: string;
+}
+
+export default function ArtworkCarousel(props: Props) {
 	let list: HTMLDivElement | undefined;
 	const [scrollStatus, setScrollStatus] = createSignal<'start' | 'end' | 'middle'>('start');
+    const [artworks, setArtworks] = createSignal<Artwork[]>([])
+
+    fetchRecentlyAddedArtworks().then(arr => {
+        console.log('recently added:', arr)
+        setArtworks(arr)
+    })
 
 	const scroll = (delta: number) => {
 		if (!list) return;
@@ -57,7 +66,15 @@ export default function ArtworkCarousel(
 				class="snap-x snap-mandatory overflow-x-auto sm:snap-none"
 				ref={list}
 			>
-				{props.children}
+				<ul class="flex w-max pb-4" style={{ gap: GAP + 'px' }}>
+                    {
+                        artworks().map((artwork, idx) => (
+                            <li id={idx === 0 ? MEASURED_ITEM_ID : undefined} class="shrink-0 snap-start">
+                                <ArtworkCard {...artwork} class="w-72" imageLoading={idx === 0 ? 'eager' : 'lazy'} />
+                            </li>
+                        ))
+                    }
+                </ul>
 			</div>
 		</PageSection>
 	);

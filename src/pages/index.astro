@@ -1,8 +1,7 @@
 ---
-import ArtworkCollection from '~/components/ArtworkCollection/ArtworkCollection.tsx';
 import LandingHero from '~/components/LandingHero.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
-// import ArtworkCarouselSection from '~/features/artwork/ArtworkCarouselSection.astro';
+import ArtworkCarousel from '~/features/artwork/ArtworkCarousel.tsx';
 import CollectionSection from '~/features/collection/CollectionSection.astro';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 
@@ -13,9 +12,9 @@ applyDefaultCacheHeaders(Astro.response.headers);
 	<LandingHero />
 	<main class="breakout mt-16 flex flex-col gap-y-16">
 		<div class="content">
-			<div class="prose m-auto">
+			<div class="prose m-auto text-center">
 				<h1>Artists Unite to Support Appalachia</h1>
-				<p class="prose-base m-auto mb-16 text-center md:prose-lg lg:prose-xl">
+				<p class="prose-base m-auto mb-16 md:prose-lg lg:prose-xl">
 					"Artists for Appalachia" is a grassroots initiative inspired by the heartfelt desire to
 					directly support communities affected by the recent natural disaster in North Carolina and
 					surrounding areas. We bring together artists willing to give their artwork and individuals
@@ -25,13 +24,7 @@ applyDefaultCacheHeaders(Astro.response.headers);
 					hope.
 				</p>
 			</div>
-			<section
-				slot="main"
-				class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4"
-				aria-labelledby="products-heading"
-				aria-label="Products">
-				<ArtworkCollection collection="all" client:only="solid-js" />
-			</section>
+			<ArtworkCarousel heading="Recently added" client:only="solid-js" />
 		</div>
 
 		<CollectionSection />

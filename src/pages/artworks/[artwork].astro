@@ -1,7 +1,7 @@
 ---
 import ArtworkDetails from '~/components/ArtworkDetails/ArtworkDetails.tsx';
 import { applyDefaultCacheHeaders } from '~/config.ts';
-// import ArtworkCarouselSection from '~/features/artwork/ArtworkCarouselSection.astro';
+import ArtworkCarousel from '~/features/artwork/ArtworkCarousel.tsx';
 import CollectionSection from '~/features/collection/CollectionSection.astro';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 import { unwrap } from '~/lib/util.ts';
@@ -15,9 +15,7 @@ const id = unwrap(Astro.params.artwork, 'Product param not found');
 	<main class="mx-auto mt-8 w-full max-w-[1200px] gap-8">
 		<ArtworkDetails client:only="solid-js" id={id} />
 
-		<!-- <ArtworkCarouselSection
-			heading="You might also like"
-		/> -->
+		<ArtworkCarousel heading="You might also like" client:only="solid-js" />
 
 		<CollectionSection />
 	</main>

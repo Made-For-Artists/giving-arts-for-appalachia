@@ -5,6 +5,7 @@ import type { Auth, Unsubscribe } from "firebase/auth";
 import type { Firestore, } from "firebase/firestore";
 import type { FirebasePerformance } from "firebase/performance";
 import type { FirebaseStorage } from "firebase/storage";
+import type { Artwork } from "~/lib/client.types.ts";
 
 let resolve: any;
 let firebaseInstance: FirebaseApp;
@@ -118,6 +119,27 @@ export async function batchUploadArtwork(images: File[], artworkTitle: string) {
 
     return Promise.all(uploadPromisesArr);
 }
+
+export const fetchRecentlyAddedArtworks = async () => {
+    let curFirestore = await getFirestore();
+
+    // Create a reference to the cities collection
+    const { collection, query, getDocs, orderBy, limit } = await import("firebase/firestore");
+    const ref = collection(curFirestore, 'artworks');
+
+    // Create a query against the collection.
+    const q = query(ref, orderBy('createdAt', 'desc'), limit(10));
+
+    const querySnapshot = await getDocs(q);
+    let arr = [] as Artwork[];
+    querySnapshot.forEach((doc) => {
+        let curData = doc.data() as Artwork;
+        curData.id = doc.id;
+        arr.push(curData);
+    });
+
+    return arr;
+};
 
 export async function attachFirestoreCollectionListener(key: string, cb: any, category?: string) {
     let curFirestore = await getFirestore();
