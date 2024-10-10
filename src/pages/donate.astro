@@ -34,7 +34,13 @@ applyDefaultCacheHeaders(Astro.response.headers);
 					<h3 class="mb-0">Artwork details</h3>
 					<ImageUploader required client:only="solid-js" label="Artwork images" name="images" />
 					<Textfield required name="title" label="Artwork title" />
-					<PriceTextfield required name="price" client:only="solid-js" label="Suggested donation" />
+					<PriceTextfield
+						required
+						name="formattedPrice"
+						rawName="price"
+						client:only="solid-js"
+						label="Suggested donation"
+					/>
 					<Textfield required name="medium" label="Medium" />
 					<Dropdown
 						client:only="solid-js"

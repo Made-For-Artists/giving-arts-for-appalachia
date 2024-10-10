@@ -53,7 +53,7 @@ export default function ArtworkDetails({ id }) {
                         </div>
                         {artwork()?.tagline && <p class="text-slate-700">{artwork()?.tagline}</p>}
                         <p class="text-xl text-slate-700 md:text-2xl">
-                            <ArtworkPrice class="gap-3 font-semibold" price={artwork()?.price} />
+                            <ArtworkPrice class="gap-3 font-semibold" price={artwork()?.formattedPrice} />
                         </p>
 
                     </header>

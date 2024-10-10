@@ -12,10 +12,12 @@ export type Artwork = {
     category: string;
     tagline: string | null;
     /** The price of the product formatted in dollars. */
-    price: string;
+    price: number;
+    formattedPrice: string;
     imageUrl: string;
     images: Array<string>;
     createdAt: Timestamp;
+    purchased: boolean;
     updatedAt?: number | null;
     deletedAt?: number | null;
     collectionIds?: Array<string>;
