@@ -1,5 +1,6 @@
 ---
 import { getCollectionById } from 'storefront:client';
+import { z } from 'zod';
 import ArtworkCollection from '~/components/ArtworkCollection/ArtworkCollection.tsx';
 import CheckboxLink from '~/components/ui/CheckboxLink.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
@@ -7,10 +8,7 @@ import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 import SideColumnLayout from '~/layouts/SideColumnLayout.astro';
 import { unwrap } from '~/lib/util.ts';
 
-// const searchParams = Object.fromEntries(Astro.url.searchParams);
-
-// const sort = z.enum(['price']).optional().parse(searchParams.sort);
-// const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
+const searchParams = Object.fromEntries(Astro.url.searchParams);
 
 applyDefaultCacheHeaders(Astro.response.headers);
 
@@ -23,8 +21,9 @@ if (collectionResponse.error) {
 	return Astro.redirect('/');
 }
 
-console.log('collection:', collectionResponse.data.slug);
 const collection = collectionResponse.data;
+const sort = z.enum(['price', 'name']).optional().parse(searchParams.sort);
+const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
 ---
 
 <PrimaryLayout title={`Giving Arts - for Appalachia | ${collection.name}`}>
@@ -47,7 +46,7 @@ const collection = collectionResponse.data;
 						<!-- {products.length} artworks -->
 					</p>
 				</header>
-				<nav class="flex flex-col gap-2" aria-labelledby="sort-by-heading">
+				<!-- <nav class="flex flex-col gap-2" aria-labelledby="sort-by-heading">
 					<h3 id="sort-by-heading" class="font-semibold">Sort by</h3>
 					<ul class="contents">
 						<li>
@@ -57,7 +56,7 @@ const collection = collectionResponse.data;
 							<CheckboxLink href={`?sort=price&order=desc`} label="Price: High to Low" />
 						</li>
 					</ul>
-				</nav>
+				</nav> -->
 			</div>
 
 			<section
@@ -65,7 +64,12 @@ const collection = collectionResponse.data;
 				class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-4"
 				aria-labelledby="products-heading"
 				aria-label="Products">
-				<ArtworkCollection collection={collection.id} client:only="solid-js" />
+				<ArtworkCollection
+					sort={sort}
+					order={order}
+					collection={collection.id}
+					client:only="solid-js"
+				/>
 			</section>
 		</SideColumnLayout>
 	</div>

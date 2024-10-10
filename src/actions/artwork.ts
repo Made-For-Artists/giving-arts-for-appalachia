@@ -16,7 +16,8 @@ export const artwork = {
             dimensions: z.string(),
             category: z.string(),
             tagline: z.string(),
-            price: z.string(),
+            price: z.number(),
+            formattedPrice: z.string(),
             imageUrl: z.string(),
             images: z.array(z.string())
         }),
@@ -29,7 +30,8 @@ export const artwork = {
 
                     const docRef = await ref.add({
                         ...submission,
-                        createdAt: Timestamp.now()
+                        createdAt: Timestamp.now(),
+                        purchased: false
                     })
                     console.log('saved doc:', docRef.id)
                     return { documentId: docRef.id };

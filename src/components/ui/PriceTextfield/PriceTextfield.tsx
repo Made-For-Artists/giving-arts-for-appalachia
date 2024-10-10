@@ -4,6 +4,7 @@ import "./PriceTextfield.css";
 
 interface Props extends ComponentProps<"input"> {
 	label: string;
+    rawName: string;
 }
 
 export function PriceTextfield(props: Props) {
@@ -17,6 +18,7 @@ export function PriceTextfield(props: Props) {
 			<NumberField.Label class="number-field__label">
 				{props.label}
 			</NumberField.Label>
+            <NumberField.HiddenInput name={props.rawName} />
 			<div class="number-field__group">
 				<NumberField.Input
 					required={props.required}

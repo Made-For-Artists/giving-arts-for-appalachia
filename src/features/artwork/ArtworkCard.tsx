@@ -32,7 +32,7 @@ export default function ArtworkCard(props : Props) {
                 <div class="flex flex-col gap-2 p-2 font-medium">
                     <h3 class="text-pretty leading-tight text-theme-base-900">{props.title}</h3>
                     <p class="text-lg/tight text-theme-base-600">
-                        <ArtworkPrice price={props.price} />
+                        <ArtworkPrice price={props.purchased ? 'GIFTED' : props.formattedPrice} />
                     </p>
                 </div>
             </article>

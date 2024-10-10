@@ -2,7 +2,7 @@ import { twMerge } from 'tailwind-merge';
 import type { Artwork } from '~/lib/client.types.ts';
 
 type Props = {
-	price?: Artwork['price'];
+	price?: Artwork['formattedPrice'];
 	class?: string;
 };
 
