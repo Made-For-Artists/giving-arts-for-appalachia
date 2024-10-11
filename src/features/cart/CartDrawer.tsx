@@ -12,7 +12,7 @@ export function CartDrawer() {
 			trigger={<CartButton as="div" />}
 		>
 			<div class="flex h-full flex-col py-4">
-				<aside class="mt-3 mx-auto">
+				<aside class="mt-3">
 					<NavBar orientation='vertical'/>
 				</aside>
 			</div>

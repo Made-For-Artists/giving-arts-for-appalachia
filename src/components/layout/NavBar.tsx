@@ -23,13 +23,6 @@ export function NavBar(props : Props) {
 				>
 					Gallery
 				</NavigationMenu.Trigger>
-				{/* <NavigationMenu.Trigger
-					class="navigation-menu__trigger"
-					as="a"
-					href="/artists"
-				>
-					Artists
-				</NavigationMenu.Trigger> */}
 				<NavigationMenu.Trigger
 					class="navigation-menu__trigger"
 					as="a"

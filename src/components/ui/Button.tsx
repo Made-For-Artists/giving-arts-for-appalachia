@@ -43,12 +43,10 @@ export function SquareIconButton(props: SquareIconButtonProps) {
 			onClick={props.onClick}
 			disabled={props.disabled}
 			classList={{
-				'bg-theme-base-100 border-theme-base-200 text-theme-base-900 hover:enabled:border-theme-base-400 hover:enabled:bg-theme-base-300 disabled:text-theme-base-400':
-					theme() === 'light',
-				'bg-theme-base-800 border-theme-base-700 text-theme-base-100 hover:enabled:border-theme-base-700 hover:enabled:bg-theme-base-800':
-					theme() === 'dark',
+				'bg-theme-base-100 text-theme-base-900 hover:enabled:bg-theme-base-300 disabled:text-theme-base-400': theme() === 'light',
+				'bg-theme-base-800 text-theme-base-100 hover:enabled:bg-theme-base-800': theme() === 'dark',
 			}}
-			class={`size-9 border transition grid-center data-[icon]:*:size-6 ${props.class ?? ''}`}
+			class={`size-9 transition grid-center data-[icon]:*:size-6 ${props.class ?? ''}`}
 		>
 			{props.children}
 		</Dynamic>
