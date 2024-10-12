@@ -6,15 +6,21 @@ import { ArtworkImageSwitcher } from '~/features/artwork/ArtworkImageSwitcher.ts
 import { ArtworkPrice } from '~/features/artwork/ArtworkPrice.tsx';
 import { attachDocListener } from "~/firebase/client.ts";
 import type { Artwork } from '~/lib/client.types.ts';
+import { MessageDialogButton } from "../ui/MessageDialog/MessageDialogButton.tsx";
 
-export default function ArtworkDetails({ id }) {
+interface Props {
+    id: string;
+}
+
+export default function ArtworkDetails(props: Props) {
 	const [artwork, setArtwork] = createSignal<Artwork>();
 	const [artworkImages, setArtworkImages] = createSignal<string[]>([]);
     
-    if (id) {
-        attachDocListener(`artworks/${id}`, (doc: DocumentSnapshot) => {
+    if (props.id) {
+        attachDocListener(`artworks/${props.id}`, (doc: DocumentSnapshot) => {
             let curData = doc.data()
             console.log('artwork:', curData)
+            curData.id = props.id
             setArtwork(curData as Artwork)
             setArtworkImages(curData.images)
         });
@@ -48,15 +54,15 @@ export default function ArtworkDetails({ id }) {
                             {artwork()?.title}
                         </h1>
                         <div>
-                            {artwork()?.artist && <p class="text-slate-700">{artwork()?.artist}</p>}
-                            {artwork()?.email && <p class="text-slate-700">{artwork()?.email}</p>}
-                            {artwork()?.phone && <p class="text-slate-700">{artwork()?.phone}</p>}
+                            <p class="text-slate-700">{artwork()?.artist}</p>
+                            <p class="text-slate-700 capitalize">{artwork()?.medium}</p>
+                            <p class="text-slate-700">{artwork()?.dimensions}</p>
                         </div>
-                        {artwork()?.tagline && <p class="text-slate-700">{artwork()?.tagline}</p>}
-                        <p class="text-xl text-slate-700 md:text-2xl">
+                        <p class="text-slate-700">{artwork()?.tagline}</p>
+                        <p class="text-xl text-slate-700 md:text-2xl mt-8">
                             <ArtworkPrice class="gap-3 font-semibold" purchased={artwork()?.purchased} price={artwork()?.formattedPrice} />
                         </p>
-
+                        <MessageDialogButton artworkID={artwork()?.id}></MessageDialogButton>
                     </header>
                 </div>
             </div>
