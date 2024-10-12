@@ -4,6 +4,44 @@ import { Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { app } from '../firebase/server';
 
 export const artwork = {
+    sendMessage: defineAction({
+        accept: 'form',
+        input: z.object({
+            name: z.string(),
+            email: z.string(),
+            phone: z.string(),
+            message: z.string(),
+            artworkID: z.string()
+        }),
+        handler: async (submission) => {
+            console.log('new user message:', submission)
+            if (app) {
+                try {
+                    const db = getFirestore();
+                    const ref = db.collection('pendingMessages');
+
+                    const docRef = await ref.add({
+                        ...submission,
+                        createdAt: Timestamp.now(),
+                        openedAt: 0
+                    })
+                    console.log('saved user message:', docRef.id)
+                    return { documentId: docRef.id };
+                } catch (err) {
+                    console.log('unable to save to db:', err)
+                    throw new ActionError({
+                        code: "INTERNAL_SERVER_ERROR",
+                        message: "Unable to save user message to db.",
+                    });
+                }
+            }
+
+            throw new ActionError({
+                code: "UNAUTHORIZED",
+                message: "Unable to init firebase app.",
+            });
+        }
+    }),
     submitArtwork: defineAction({
         accept: 'form',
         input: z.object({
