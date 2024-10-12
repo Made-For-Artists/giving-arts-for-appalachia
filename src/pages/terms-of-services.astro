@@ -1,0 +1,199 @@
+---
+import CollectionSection from '~/features/collection/CollectionSection.astro';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+import TitleHeader from '~/components/TitleHeader.astro';
+
+applyDefaultCacheHeaders(Astro.response.headers);
+---
+
+<PrimaryLayout title="Giving Arts - for Appalachia">
+	<TitleHeader title="Terms and Conditions" />
+	<main class="breakout mt-16 flex flex-col gap-y-16">
+		<div class="content">
+			<div class="prose m-auto">
+				<strong>Efective Date: </strong>
+				<h2>Introduction</h2>
+				<p>
+					Welcome to "Giving Arts for Appalachia" (the "Initiative"). These Terms and Conditions
+					("Terms") govern your use of our website and participation in the Initiative. By accessing
+					or using our website, you agree to comply with and be bound by these Terms.
+				</p>
+				<ol>
+					<li>
+						<strong>Acceptance of Terms</strong>
+						<ul>
+							<li>
+								By using the website or participating in the Initiative, you acknowledge that you
+								have read, understood, and agree to be bound by these Terms. If you do not agree
+								with any part of these Terms, please do not use our website or participate in the
+								Initiative.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Purpose of the Initiative</strong>
+						<ul>
+							<li>
+								"Giving Arts for Appalachia" is a trust-based, non-commercial platform that connects
+								artists willing to donate their artwork with donors who pledge to make direct
+								contributions to causes supporting Appalachian communities affected by natural
+								disasters.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Participation</strong>
+						<ul>
+							<ol>
+								<li>
+									<strong>For Artists</strong>
+									<ul>
+										<li>
+											Artists voluntarily offer their artwork without expectation of payment or
+											compensation from the Initiative.
+										</li>
+										<li>
+											Artists agree to communicate directly with donors and arrange for the delivery
+											of artwork upon confirmation of the donor's pledge.
+										</li>
+										<li>
+											Artists retain all rights to their artwork until the transfer is completed to
+											the donor.
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong>For Donors</strong>
+									<ul>
+										<li>
+											Donors agree to make direct contributions to the cause(s) of their choice,
+											independently of the Initiative.
+										</li>
+										<li>
+											Donors acknowledge that the Initiative does not collect or process any funds.
+										</li>
+										<li>
+											Donors are responsible for verifying the legitimacy of the organizations or
+											individuals they choose to support.
+										</li>
+									</ul>
+								</li>
+							</ol>
+						</ul>
+					</li>
+					<li>
+						<strong>Trust-Based Exchange</strong>
+						<ul>
+							<li>
+								The Initiative operates on mutual trust between artists and donors. We do not
+								mediate transactions or verify the fulfillment of pledges or delivery of artwork.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>No Commercial Transactions</strong>
+						<ul>
+							<li>The Initiative does not facilitate commercial transactions or sales.</li>
+							<li>No fees or commissions are charged by the Initiative.</li>
+							<li>
+								Participants agree not to engage in commercial activities through the platform.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>User Conduct</strong>
+						<p>Participants agree to:</p>
+						<ul>
+							<li>Engage respectfully and honestly with others.</li>
+							<li>Provide accurate information.</li>
+							<li>Refrain from any fraudulent or deceptive activities.</li>
+							<li>Respect the intellectual property rights of artists.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Intellectual Property Rights</strong>
+						<ul>
+							<li>
+								Artists retain copyright and all other intellectual property rights to their artwork
+								until transfer.
+							</li>
+							<li>
+								Content on the website, including text, images, and graphics, is owned by the
+								Initiative or used with permission and may not be reproduced without consent.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Limitation of Liability</strong>
+						<ul>
+							<li>The Initiative is provided "as is" without warranties of any kind.</li>
+							<li>
+								We are not liable for any direct, indirect, incidental, or consequential damages
+								arising from participation in the Initiative or use of the website.
+							</li>
+							<li>We do not guarantee the performance or actions of any participant.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Indemnification</strong>
+						<ul>
+							<li>
+								Participants agree to indemnify and hold harmless the Initiative, its organizers,
+								and affiliates from any claims, liabilities, damages, or expenses arising from their
+								participation.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Modification of Terms</strong>
+						<ul>
+							<li>
+								We reserve the right to modify these Terms at any time. Changes will be effective
+								immediately upon posting on the website. Continued use of the website constitutes
+								acceptance of the modified Terms.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Termination</strong>
+						<ul>
+							<li>
+								We reserve the right to terminate or suspend access to the website or participation
+								in the Initiative for any reason, including violation of these Terms.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Governing Law</strong>
+						<ul>
+							<li>
+								These Terms are governed by and construed in accordance with the laws of [Insert
+								Jurisdiction], without regard to its conflict of law provisions.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Contact Information</strong>
+						<ul>
+							<p>For questions or concerns regarding these Terms, please contact us at:</p>
+							<li>
+								<b>Email:</b><a href="mailto: info@givingartsforappalachia.org">
+									info@givingartsforappalachia.org</a
+								>
+							</li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</div>
+
+		<CollectionSection />
+	</main>
+
+	<style>
+		a {
+			text-decoration: none;
+		}
+	</style>
+</PrimaryLayout>

@@ -1,0 +1,175 @@
+---
+import CollectionSection from '~/features/collection/CollectionSection.astro';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+import TitleHeader from '~/components/TitleHeader.astro';
+
+applyDefaultCacheHeaders(Astro.response.headers);
+---
+
+<PrimaryLayout title="Giving Arts - for Appalachia">
+	<TitleHeader title="Donation Guidelines" />
+	<main class="breakout mt-16 flex flex-col gap-y-16">
+		<div class="content">
+			<div class="prose m-auto">
+				<h2>Introduction</h2>
+				<p>
+					"Giving Arts for Appalachia" operates on a foundation of generosity and mutual trust
+					between artists and donors. To ensure a positive and effective experience for all
+					participants, we have established the following guidelines:
+				</p>
+				<h3>For Artists</h3>
+				<ol>
+					<li>
+						<strong>Honesty and Transparency</strong>
+						<ul>
+							<li>
+								Provide accurate and detailed information about your artwork, including its
+								condition, dimensions, medium, and value.
+							</li>
+							<li>Be clear about any limitations or special conditions related to the artwork.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Prompt Communication</strong>
+						<ul>
+							<li>Respond to inquiries from potential donors in a timely and courteous manner.</li>
+							<li>
+								Maintain open communication throughout the process, from initial contact to delivery
+								of the artwork.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Artwork Availability</strong>
+						<ul>
+							<li>
+								Ensure that the artwork you offer is available and reserved exclusively for this
+								initiative until a donor is confirmed or you decide to withdraw it.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Delivery of Artwork</strong>
+						<ul>
+							<li>
+								Arrange for the safe and timely delivery of the artwork once the donor has confirmed
+								their pledge.
+							</li>
+							<li>
+								Discuss and agree upon shipping or delivery details, including any associated costs,
+								with the donor.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Respect and Professionalism</strong>
+						<ul>
+							<li>Treat all donors with respect and professionalism.</li>
+							<li>Honor your commitments to provide the artwork as agreed upon.</li>
+						</ul>
+					</li>
+				</ol>
+				<h3>For Donors</h3>
+				<ol>
+					<li>
+						<strong>Genuine Intent to Support</strong>
+						<ul>
+							<li>
+								Engage with the initiative with a sincere desire to support Appalachian communities
+								through direct giving
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Direct Giving</strong>
+						<ul>
+							<li>Make your financial gift directly to the cause(s) of your choice.</li>
+							<li>
+								Choose organizations or individuals that resonate with you and align with your
+								values.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Communication with Artists</strong>
+						<ul>
+							<li>Contact artists respectfully to express interest in their artwork.</li>
+							<li>Be transparent about your intentions and the cause(s) you plan to support.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Confirmation of Pledge</strong>
+						<ul>
+							<li>
+								While proof of donation is appreciated, it is not mandatory. Communicate with the
+								artist to confirm that your pledge has been fulfilled
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Respect and Professionalism</strong>
+						<ul>
+							<li>Treat all artists with respect and appreciation for their generosity.</li>
+							<li>Honor your commitments to make the agreed-upon pledge.</li>
+						</ul>
+					</li>
+				</ol>
+				<h3>Mutual Understanding</h3>
+				<ol>
+					<li>
+						<strong>Trust-Based Engagement</strong>
+						<ul>
+							<li>
+								Both artists and donors acknowledge that this initiative relies on mutual trust and
+								goodwill.
+							</li>
+							<li>
+								Participants agree to act in good faith to ensure a positive experience for everyone
+								involved.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Dispute Resolution</strong>
+						<ul>
+							<li>
+								In the unlikely event of a misunderstanding or disagreement, participants are
+								encouraged to communicate openly to resolve the issue amicably.
+							</li>
+							<li>
+								"Giving Arts for Appalachia" is not responsible for mediating disputes but may offer
+								guidance if needed.
+							</li>
+						</ul>
+					</li>
+				</ol>
+				<h3>General Guidelines</h3>
+				<ol>
+					<li>
+						<strong>Privacy and Confidentiality</strong>
+						<ul>
+							<li>
+								Respect the privacy of others by not sharing personal contact information without
+								consent.
+							</li>
+							<li>Use provided contact information solely for the purposes of this initiative.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Ethical Conduct</strong>
+						<ul>
+							<li>Engage in ethical behavior that upholds the integrity of the initiative.</li>
+							<li>
+								Refrain from any actions that could harm others or undermine the spirit of
+								generosity and trust.
+							</li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</div>
+
+		<CollectionSection />
+	</main>
+</PrimaryLayout>
