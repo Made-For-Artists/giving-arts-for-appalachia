@@ -2,7 +2,12 @@ import { Collapsible } from "@kobalte/core/collapsible";
 import { FaSolidPlus } from 'solid-icons/fa'
 import "./CollapsibleFaq.css";
 
-export function CollapsibleFaq({ content, question }) {
+interface Props {
+    content: string;
+    question: string;
+}
+
+export function CollapsibleFaq({ content, question } : Props) {
   return (
     <Collapsible class="collapsible">
         <Collapsible.Trigger class="collapsible__trigger">
