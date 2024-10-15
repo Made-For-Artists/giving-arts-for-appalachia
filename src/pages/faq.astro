@@ -1,0 +1,22 @@
+---
+import TitleHeader from '~/components/TitleHeader.astro';
+import { CollapsibleFaq } from '~/components/ui/CollapsibleFaq/CollapsibleFaq';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import CollectionSection from '~/features/collection/CollectionSection.astro';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+
+applyDefaultCacheHeaders(Astro.response.headers);
+---
+
+<PrimaryLayout title="Giving Arts - for Appalachia">
+	<TitleHeader title="FAQs" />
+	<main class="breakout mt-16 flex flex-col gap-y-16">
+		<div class="content">
+			<div class="prose m-auto">
+				<CollapsibleFaq client:only="solid-js" />
+			</div>
+		</div>
+
+		<CollectionSection />
+	</main>
+</PrimaryLayout>

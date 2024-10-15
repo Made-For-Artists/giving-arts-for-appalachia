@@ -26,6 +26,13 @@ export function NavBar(props : Props) {
 				<NavigationMenu.Trigger
 					class="navigation-menu__trigger"
 					as="a"
+					href="/faq"
+				>
+					FAQ
+				</NavigationMenu.Trigger>
+				<NavigationMenu.Trigger
+					class="navigation-menu__trigger"
+					as="a"
 					href="/donate"
 				>
 					Donate your art
