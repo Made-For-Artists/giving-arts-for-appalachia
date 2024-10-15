@@ -16,6 +16,11 @@
     outline: none;
 }
 
+.collapsible__trigger:hover {
+    background-color: #ece1cd40;
+    cursor: pointer;
+}
+
 .collapsible__trigger:focus-visible {
     outline: 2px solid hsl(200 98% 39%);
     outline-offset: 2px;
@@ -28,7 +33,8 @@
 }
 
 .collapsible__trigger[data-expanded] .collapsible__trigger-icon {
-    transform: rotateZ(180deg);
+    transform: rotateZ(135deg);
+    color: #aa7338;
 }
 
 .collapsible__content {
