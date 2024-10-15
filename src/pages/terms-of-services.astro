@@ -1,18 +1,19 @@
 ---
-import CollectionSection from '~/features/collection/CollectionSection.astro';
+export const prerender = true;
+
+import TitleHeader from '~/components/TitleHeader.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
-import TitleHeader from '~/components/TitleHeader.astro';
 
 applyDefaultCacheHeaders(Astro.response.headers);
 ---
 
-<PrimaryLayout title="Giving Arts - for Appalachia">
+<PrimaryLayout title="Giving Arts - for Appalachia | Terms of Services">
 	<TitleHeader title="Terms and Conditions" />
 	<main class="breakout mt-16 flex flex-col gap-y-16">
 		<div class="content">
 			<div class="prose m-auto">
-				<strong>Efective Date: </strong>
+				<strong>Efective Date: 10/2024</strong>
 				<h2>Introduction</h2>
 				<p>
 					Welcome to "Giving Arts for Appalachia" (the "Initiative"). These Terms and Conditions
@@ -165,35 +166,18 @@ applyDefaultCacheHeaders(Astro.response.headers);
 						</ul>
 					</li>
 					<li>
-						<strong>Governing Law</strong>
-						<ul>
-							<li>
-								These Terms are governed by and construed in accordance with the laws of [Insert
-								Jurisdiction], without regard to its conflict of law provisions.
-							</li>
-						</ul>
-					</li>
-					<li>
 						<strong>Contact Information</strong>
 						<ul>
 							<p>For questions or concerns regarding these Terms, please contact us at:</p>
 							<li>
 								<b>Email:</b><a href="mailto: info@givingartsforappalachia.org">
-									info@givingartsforappalachia.org</a
-								>
+									info@givingartsforappalachia.org
+								</a>
 							</li>
 						</ul>
 					</li>
 				</ol>
 			</div>
 		</div>
-
-		<CollectionSection />
 	</main>
-
-	<style>
-		a {
-			text-decoration: none;
-		}
-	</style>
 </PrimaryLayout>
