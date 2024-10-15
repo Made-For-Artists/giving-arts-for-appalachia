@@ -9,48 +9,51 @@ applyDefaultCacheHeaders(Astro.response.headers);
 ---
 
 <PrimaryLayout title="Giving Arts - for Appalachia">
-	<TitleHeader title="FAQs" />
+	<TitleHeader title="Frequently Asked Questions" />
 	<main class="breakout mt-16 flex flex-col gap-y-16">
 		<div class="content">
-			<div class="prose m-auto">
-				
-				<CollapsibleFaq client:only="solid-js" 
-				question="How does Giving Arts for Appalachia work?"
-				content="Artists donate their artworks to the initiative. Donors select a piece, pledge an agreed amount directly to a cause supporting Appalachian relief, and receive the artwork from the artist."
+			<div class="prose m-auto grid gap-3">
+				<CollapsibleFaq
+					client:only="solid-js"
+					question="How does Giving Arts for Appalachia work?"
+					content="Artists donate their artworks to the initiative. Donors select a piece, pledge an agreed amount directly to a cause supporting Appalachian relief, and receive the artwork from the artist."
 				/>
 
-				<CollapsibleFaq client:only="solid-js" 
-				question="Where does my donation go?"
-				content="Donations go directly to the cause(s) you choose. We encourage you to research and select organizations or individuals that resonate with you."
+				<CollapsibleFaq
+					client:only="solid-js"
+					question="Where does my donation go?"
+					content="Donations go directly to the cause(s) you choose. We encourage you to research and select organizations or individuals that resonate with you."
 				/>
 
-				<CollapsibleFaq client:only="solid-js" 
-				question="Is my donation tax-deductible?"
-				content="Donations go directly to the cause(s) you choose. We encourage you to research and select organizations or individuals that resonate with you."
+				<CollapsibleFaq
+					client:only="solid-js"
+					question="Is my donation tax-deductible?"
+					content="As donations are made directly to the chosen causes, tax deductibility depends on the recipient organization. Please consult with a tax professional."
 				/>
 
-				<CollapsibleFaq client:only="solid-js" 
-				question="How do I contact an artist?"
-				content="Each artwork in the gallery includes the artist's contact information. You can reach out via email or phone as provided."
+				<CollapsibleFaq
+					client:only="solid-js"
+					question="How do I contact an artist?"
+					content="Each artwork in the gallery includes the artist's contact information. You can reach out via email or phone as provided."
 				/>
 
-				<CollapsibleFaq client:only="solid-js" 
-				question="Who handles the shipping of the artwork?"
-				content="Shipping arrangements are made directly between the artist and the donor. Please discuss details such as shipping costs and delivery times with the artist."
+				<CollapsibleFaq
+					client:only="solid-js"
+					question="Who handles the shipping of the artwork?"
+					content="Shipping arrangements are made directly between the artist and the donor. Please discuss details such as shipping costs and delivery times with the artist."
 				/>
 
-				<CollapsibleFaq 
-				client:only="solid-js" 
-				question="Can I donate art other than paintings?"
-				content="Yes! We welcome all forms of visual art. Please provide detailed information when submitting your artwork."
+				<CollapsibleFaq
+					client:only="solid-js"
+					question="Can I donate art other than paintings?"
+					content="Yes! We welcome all forms of visual art. Please provide detailed information when submitting your artwork."
 				/>
 
-				<CollapsibleFaq 
-				client:only="solid-js" 
-				question="How can I be sure the artist will send the artwork after I donate?"
-				content="Our initiative operates on mutual trust. Both artists and donors are encouraged to communicate openly and honestly to ensure a positive experience."
+				<CollapsibleFaq
+					client:only="solid-js"
+					question="How can I be sure the artist will send the artwork after I donate?"
+					content="Our initiative operates on mutual trust. Both artists and donors are encouraged to communicate openly and honestly to ensure a positive experience."
 				/>
-
 			</div>
 		</div>
 
