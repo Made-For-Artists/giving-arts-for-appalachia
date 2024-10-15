@@ -12,16 +12,19 @@ applyDefaultCacheHeaders(Astro.response.headers);
 	<LandingHero />
 	<main class="breakout mt-16 flex flex-col gap-y-16">
 		<div class="content">
-			<div class="prose m-auto text-center">
-				<h1>Artists Unite to Support Appalachia</h1>
+			<div class="prose-gafacolors prose m-auto max-w-none">
+				<h1 class="mb-0">Artists Unite to Support Appalachia</h1>
+				<h3 class="mt-0">
+					Join us in turning art into action to directly support communities in need.
+				</h3>
 				<p class="prose-base m-auto mb-16 md:prose-lg lg:prose-xl">
-					"Artists for Appalachia" is a grassroots initiative inspired by the heartfelt desire to
+					"Giving Arts for Appalachia" is a grassroots initiative inspired by a heartfelt desire to
 					directly support communities affected by the recent natural disaster in North Carolina and
-					surrounding areas. We bring together artists willing to give their artwork and individuals
-					ready to make a meaningful difference through direct giving. This movement is rooted in
-					the principles of generosity and trust, empowering donors to choose how and where their
-					contributions make an impact, while artists share their creations to foster healing and
-					hope.
+					surrounding Appalachian areas. We bring together artists willing to give their artwork and
+					individuals ready to make a meaningful difference through direct giving. Rooted in the
+					principles of generosity and trust, this movement empowers donors to choose how and where
+					their contributions make an impact, while artists share their creations to foster healing
+					and hope.
 				</p>
 			</div>
 			<ArtworkCarousel heading="Recently added" client:only="solid-js" />

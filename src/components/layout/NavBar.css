@@ -10,6 +10,15 @@
 
 .navigation-menu__root[data-orientation="vertical"] {
     flex-direction: column;
+    gap: 12px;
+    width: auto;
+    align-items: stretch;
+}
+
+ul[data-orientation="vertical"] .navigation-menu__trigger {
+    font-size: 24px;
+    width: 100%;
+    padding: 28px;
 }
 
 .navigation-menu__trigger {
@@ -221,6 +230,12 @@
     .navigation-menu__item-description {
         font-size: 0.75rem;
         line-height: 1.1;
+    }
+
+    ul[data-orientation="vertical"] .navigation-menu__trigger {
+        font-size: 20px;
+        width: 100%;
+        padding: 20px;
     }
 }
 

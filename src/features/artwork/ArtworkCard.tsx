@@ -30,12 +30,12 @@ export default function ArtworkCard(props : Props) {
                         class="object-contain h-full w-full"
                     />
                 </Card>
-                <div class="flex flex-col flex-1 p-2 font-medium prose">
+                <div class="flex flex-col p-2 font-medium prose">
                     <h3 class="m-0 text-pretty text-theme-base-900 italic">{props.title}</h3>
                     <p class="m-0 mt-auto leading-tight">{props.artist}</p>
                     <p class="m-0 leading-tight capitalize">{props.medium}</p>
                     <p class="m-0 leading-tight">{props.dimensions}</p>
-                    <p class="text-lg/tight text-theme-base-600 m-0 mt-3">
+                    <p class="text-lg/tight text-theme-base-600 m-0">
                         <ArtworkPrice purchased={props.purchased} price={props.formattedPrice} />
                     </p>
                 </div>

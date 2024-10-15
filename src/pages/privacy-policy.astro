@@ -1,0 +1,170 @@
+---
+export const prerender = true;
+
+import TitleHeader from '~/components/TitleHeader.astro';
+import { applyDefaultCacheHeaders } from '~/config.ts';
+import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
+
+applyDefaultCacheHeaders(Astro.response.headers);
+---
+
+<PrimaryLayout title="Giving Arts - for Appalachia | Privacy Policy">
+	<TitleHeader title="Privacy Policy" />
+	<main class="breakout mt-16 flex flex-col gap-y-16">
+		<div class="content">
+			<div class="prose m-auto">
+				<strong>Efective Date: 10/2024</strong>
+				<h2>Introduction</h2>
+				<p>
+					"Giving Arts for Appalachia" (the "Initiative") is committed to protecting your privacy.
+					This Privacy Policy outlines how we collect, use, disclose, and safeguard your personal
+					information when you visit our website or participate in the Initiative.
+				</p>
+				<ol>
+					<li>
+						<strong>Information We Collect</strong>
+						<ul>
+							<ol>
+								<li>
+									<strong>Personal Information</strong>
+									<p>
+										We may collect personal information that you voluntarily provide to us when you:
+									</p>
+									<ul>
+										<li>
+											Submit an artwork (e.g., name, email address, phone number, artist statement).
+										</li>
+										<li>
+											Contact us via email or through the contact form (e.g., name, email address,
+											message content).
+										</li>
+										<li>Subscribe to updates or newsletters (e.g., email address).</li>
+									</ul>
+								</li>
+								<li>
+									<strong>Non-Personal Information</strong>
+									<p>
+										We may collect non-personal information automatically when you visit our
+										website, such as:
+									</p>
+									<ul>
+										<li>IP address</li>
+										<li>Browser type</li>
+										<li>Operating system</li>
+										<li>Pages viewed and the dates/times of access</li>
+									</ul>
+								</li>
+							</ol>
+						</ul>
+					</li>
+					<li>
+						<strong>Use of Your Information</strong>
+						<p>We may use the information we collect for various purposes, including:</p>
+						<ul>
+							<li>
+								<b>Providing Services:</b> To display your artwork and information in the gallery.
+							</li>
+							<li>
+								<b>Communication:</b> To respond to your inquiries, send updates, or provide information
+								you request.
+							</li>
+							<li><b>Improvement:</b> To analyze usage and improve our website and services.</li>
+							<li><b>Compliance:</b> To comply with legal obligations.</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Disclosure of Your Information</strong>
+						<p>
+							We do not sell, rent, or trade your personal information to third parties. We may
+							disclose your information:
+						</p>
+						<ul>
+							<li><b>With Your Consent:</b> When you have given us explicit permission.</li>
+							<li>
+								<b>Legal Requirements:</b> If required to do so by law or in response to legal processes.
+							</li>
+							<li>
+								<b>Protection of Rights:</b> To protect the rights, property, or safety of the Initiative,
+								participants, or others.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Third-Party Services</strong>
+						<ul>
+							<li>
+								Our website may contain links to third-party websites or services not controlled by
+								us. We are not responsible for the privacy practices of these third parties. We
+								encourage you to review their privacy policies
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Security of Your Information</strong>
+						<ul>
+							<li>
+								We implement reasonable security measures to protect your personal information.
+								However, no method of transmission over the internet or electronic storage is
+								completely secure. We cannot guarantee absolute security.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Cookies and Tracking Technologies</strong>
+						<ul>
+							<li>
+								We may use cookies and similar tracking technologies to enhance your experience on
+								our website. You can choose to disable cookies through your browser settings.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Children's Privacy</strong>
+						<ul>
+							<li>
+								Our website is not intended for individuals under the age of 13. We do not knowingly
+								collect personal information from children under 13. If you are under 13, please do
+								not provide any personal information.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Your Choices</strong>
+						<ul>
+							<li>
+								<b>Access and Correction:</b> You may request access to or correction of your personal
+								information by contacting us.
+							</li>
+							<li>
+								<b>Opt-Out:</b> You may opt-out of receiving communications from us by following the
+								unsubscribe instructions or contacting us directly.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Changes to This Privacy Policy</strong>
+						<ul>
+							<li>
+								We may update this Privacy Policy from time to time. Changes will be effective upon
+								posting the revised policy on this page with an updated effective date.
+							</li>
+						</ul>
+					</li>
+					<li>
+						<strong>Contact Information</strong>
+						<p>
+							If you have questions or concerns about this Privacy Policy, please contact us at:
+						</p>
+						<ul>
+							<li>
+								<b>Email:</b><a href="mailto: info@givingartsforappalachia.org">
+									info@givingartsforappalachia.org
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</main>
+</PrimaryLayout>
