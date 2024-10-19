@@ -3,7 +3,7 @@ import { getCollectionById } from 'storefront:client';
 import { z } from 'zod';
 import ArtworkCollection from '~/components/ArtworkCollection/ArtworkCollection.tsx';
 import TitleHeader from '~/components/TitleHeader.astro';
-// import CheckboxLink from '~/components/ui/CheckboxLink.astro';
+import CheckboxLink from '~/components/ui/CheckboxLink.astro';
 import { applyDefaultCacheHeaders } from '~/config.ts';
 import PrimaryLayout from '~/layouts/PrimaryLayout.astro';
 import SideColumnLayout from '~/layouts/SideColumnLayout.astro';
@@ -23,7 +23,7 @@ if (collectionResponse.error) {
 }
 
 const collection = collectionResponse.data;
-const sort = z.enum(['price', 'name']).optional().parse(searchParams.sort);
+const sort = z.enum(['price', 'title']).optional().parse(searchParams.sort);
 const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
 ---
 
@@ -31,7 +31,6 @@ const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
 	<TitleHeader title="Discover Art That Makes a Difference" />
 	<div class="pt-10">
 		<div class="prose prose-gafacolors max-w-none">
-			<!-- <h2 class="mb-0">Discover Art That Makes a Difference</h2> -->
 			<h4 class="mt-0">
 				Explore a curated collection of artworks donated by artists passionate about supporting
 				Appalachia.
@@ -52,7 +51,7 @@ const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
 						<!-- {products.length} artworks -->
 					</p>
 				</header>
-				<!-- <nav class="flex flex-col gap-2" aria-labelledby="sort-by-heading">
+				<nav class="flex flex-col gap-2" aria-labelledby="sort-by-heading">
 					<h3 id="sort-by-heading" class="font-semibold">Sort by</h3>
 					<ul class="contents">
 						<li>
@@ -61,8 +60,14 @@ const order = z.enum(['asc', 'desc']).optional().parse(searchParams.order);
 						<li>
 							<CheckboxLink href={`?sort=price&order=desc`} label="Price: High to Low" />
 						</li>
+						<li>
+							<CheckboxLink href={`?sort=title&order=asc`} label="Title: A-Z" />
+						</li>
+						<li>
+							<CheckboxLink href={`?sort=title&order=desc`} label="Title: Z-A" />
+						</li>
 					</ul>
-				</nav> -->
+				</nav>
 			</div>
 
 			<section
