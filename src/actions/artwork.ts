@@ -1,7 +1,10 @@
 import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 import { Timestamp, getFirestore } from 'firebase-admin/firestore';
+import { LoopsClient } from 'loops';
 import { app } from '../firebase/server';
+
+const loops = new LoopsClient(import.meta.env.LOOPS_API)
 
 export const artwork = {
     sendMessage: defineAction({
@@ -11,7 +14,11 @@ export const artwork = {
             email: z.string(),
             phone: z.string(),
             message: z.string(),
-            artworkID: z.string()
+            artworkID: z.string(),
+            title: z.string(),
+            price: z.string(),
+            artist: z.string(),
+            artistEmail: z.string()
         }),
         handler: async (submission) => {
             console.log('new user message:', submission)
@@ -26,6 +33,37 @@ export const artwork = {
                         openedAt: 0
                     })
                     console.log('saved user message:', docRef.id)
+
+                    // Send user confirmation email
+                    const payload = {
+                        eventName: 'artwork_inquiry',
+                        email: submission.email,
+                        firstName: submission.name,
+                        eventProperties: {
+                            title: submission.title,
+                            artist: submission.artist,
+                            price: submission.price,
+                            artworkLink: `https://givingarts.mfa.studio/artworks/${submission.artworkID}`
+                        }
+                    }
+                    const loopsResponse = await loops.sendEvent(payload);
+                    if (!loopsResponse?.success) throw new ActionError({ code: 'BAD_REQUEST', message: 'Unable to send user confirmation email.' })
+
+                    // Send artist communication email
+                    const artistCommPayload = {
+                        eventName: 'initiate_artist_comm',
+                        email: submission.artistEmail,
+                        firstName: submission.artist,
+                        eventProperties: {
+                            customerName: submission.name,
+                            customerEmail: submission.email,
+                            customerPhone: submission.phone,
+                            customerMessage: submission.message,
+                        }
+                    }
+                    const artistCommResponse = await loops.sendEvent(artistCommPayload);
+                    if (!artistCommResponse?.success) throw new ActionError({ code: 'BAD_REQUEST', message: 'Unable to send artist communication email.' })
+
                     return { documentId: docRef.id };
                 } catch (err) {
                     console.log('unable to save to db:', err)
