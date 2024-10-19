@@ -62,6 +62,9 @@ importers:
       firebase-admin:
         specifier: ^12.6.0
         version: 12.6.0
+      loops:
+        specifier: ^3.3.0
+        version: 3.3.0
       solid-icons:
         specifier: ^1.1.0
         version: 1.1.0(solid-js@1.9.2)
@@ -2990,6 +2993,10 @@ packages:
 
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
+
+  loops@3.3.0:
+    resolution: {integrity: sha512-jAVPzzz0+OH6X+lml1TTY5EkZjYGN0CiC5O8Ibx3okkepKAokXTwqpwcEZt0Np6a5EAQ/raeM59LROIYmeKpXg==}
+    engines: {node: '>=18'}
 
   loupe@3.1.2:
     resolution: {integrity: sha512-23I4pFZHmAemUnz8WZXbYRSKYj801VDaNv9ETuMh7IrMc7VuVVSo+Z9iLE3ni30+U48iDWfi30d3twAXBYmnCg==}
@@ -8214,6 +8221,8 @@ snapshots:
   long@5.2.3: {}
 
   longest-streak@3.1.0: {}
+
+  loops@3.3.0: {}
 
   loupe@3.1.2: {}
 

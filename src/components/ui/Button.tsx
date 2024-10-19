@@ -11,6 +11,7 @@ export function Button(props: Props) {
 	return (
 		<button
 			{...props}
+            disabled={props.pending}
 			type={props.type ?? 'button'}
 			class={twMerge(
 				'flex h-12 items-center justify-center gap-3 bg-theme-base-900 px-4 text-sm font-semibold uppercase text-white transition ',
