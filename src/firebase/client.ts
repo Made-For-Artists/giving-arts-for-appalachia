@@ -2,7 +2,7 @@ import type { Analytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import type { FirebaseApp } from "firebase/app";
 import type { Auth, Unsubscribe } from "firebase/auth";
-import type { Firestore, } from "firebase/firestore";
+import type { Firestore } from "firebase/firestore";
 import type { FirebasePerformance } from "firebase/performance";
 import type { FirebaseStorage } from "firebase/storage";
 import type { Artwork } from "~/lib/client.types.ts";
