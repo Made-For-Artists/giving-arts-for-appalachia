@@ -4,17 +4,21 @@ import type { JSX } from 'solid-js/types/jsx.d.ts';
 import './MessageDialog.css';
 import { actions } from 'astro:actions';
 import { Toast, toaster } from "@kobalte/core/toast";
+import { createSignal } from 'solid-js';
 import { Portal } from 'solid-js/web';
+import type { Artwork } from '~/lib/client.types.ts';
 import { Button } from '../Button.tsx';
 import { Textfield } from '../Textfield/Textfield.tsx';
 
 export function MessageDialog(props: {
 	artworkID?: string;
+    artwork?: Artwork;
     trigger?: JSX.Element;
 	defaultOpen?: boolean;
 	open?: boolean;
 	onOpenChange: (open: boolean) => void;
 }) {
+    const [pending, setPending] = createSignal<boolean>(false)
 
     let id: number;
     const showToast = (title: string) => {
@@ -66,12 +70,17 @@ export function MessageDialog(props: {
                                 <Textfield required name="phone" label="Phone" type="tel"></Textfield>
                                 <Textfield required name="message" label="Message" textarea></Textfield>
                                 <input required type="hidden" value={props.artworkID} name="artworkID" />
-                                <Button onclick={async (event) => {
+                                <Button pending={pending()} onclick={async (event) => {
                                     event.preventDefault();
+                                    setPending(true)
+                                    
                                     const form = document.querySelector('form')
-                                    console.log('form:', form)
-                                    if (form?.reportValidity()) {
+                                    if (form?.reportValidity() && props.artwork) {
                                         const formData = new FormData(form);
+                                        formData.set('title', props.artwork.title)
+                                        formData.set('artist', props.artwork.artist)
+                                        formData.set('price', props.artwork.formattedPrice)
+                                        formData.set('artistEmail', props.artwork.email)
                             
                                         const { data, error } = await actions.artwork.sendMessage(formData);
                                         if (!error) {
@@ -79,9 +88,10 @@ export function MessageDialog(props: {
                                             props.onOpenChange(false)
                                         }
                                         if (error) {
-                                            console.log('Unable to send message, please refresh page and try again.');
+                                            showToast('Unable to send message, please refresh page and try again.');
                                         };
                                     }
+                                    setPending(false)
                                 }}>send message</Button>
                             </form>
                         </Dialog.Content>
