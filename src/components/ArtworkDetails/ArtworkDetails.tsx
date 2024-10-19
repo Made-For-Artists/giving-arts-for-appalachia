@@ -62,7 +62,7 @@ export default function ArtworkDetails(props: Props) {
                         <p class="text-xl text-slate-700 md:text-2xl mt-8">
                             <ArtworkPrice class="gap-3 font-semibold" purchased={artwork()?.purchased} price={artwork()?.formattedPrice} />
                         </p>
-                        <MessageDialogButton artwork={artwork()} artworkID={artwork()?.id}></MessageDialogButton>
+                        <MessageDialogButton disabled={artwork()?.purchased} artwork={artwork()} artworkID={artwork()?.id}></MessageDialogButton>
                     </header>
                 </div>
             </div>

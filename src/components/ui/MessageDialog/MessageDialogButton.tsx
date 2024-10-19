@@ -7,6 +7,7 @@ import { MessageDialog } from './MessageDialog.tsx';
 export interface Props {
     artworkID?: string;
     artwork?: Artwork;
+    disabled?: boolean;
 }
 
 export function MessageDialogButton(props: Props) {
@@ -16,7 +17,7 @@ export function MessageDialogButton(props: Props) {
             artworkID={props.artworkID}
 			open={MessageDialogStore.messageDialogOpen}
 			onOpenChange={MessageDialogStore.setMessageDialogOpen}
-			trigger={<Button>send message</Button>}
+			trigger={<Button disabled={props.disabled}>send message</Button>}
 		></MessageDialog>
 	);
 }
